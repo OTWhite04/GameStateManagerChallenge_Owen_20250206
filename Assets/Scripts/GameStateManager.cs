@@ -12,11 +12,48 @@ public class GameStateManager : MonoBehaviour
         Pause_State
     }
 
-    public GameState gameState;
+    public GameState currentState { get; private set; }
     
+    //Stores last state as a string.
+    [SerializeField] private string currentStateDebug;
+    //Store last value as a string.
+    [SerializeField] private string lastStateDebug;
+
+    private void Start()
+    {
+        ChangeState(GameState.MainMenu_State);
+    }
+    
+    public void ChangeState(GameState newState)
+    {
+        lastStateDebug = currentState.ToString();
+
+        currentState = newState;
+
+        HandleStateChange(newState);
+
+        currentStateDebug = currentState.ToString();
+    }
+
     private void Update()
     {
-       switch(gameState)
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            ChangeState(GameState.MainMenu_State);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ChangeState(GameState.Pause_State);
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            ChangeState(GameState.Gameplay_State);
+        }
+    }
+
+    private void HandleStateChange(GameState state)
+    {
+       switch(state)
        {
             case GameState.MainMenu_State:
             {
