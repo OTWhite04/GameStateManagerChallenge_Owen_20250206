@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
+    public GameManager gameManager;
 
     public enum GameState
     {
@@ -22,6 +23,7 @@ public class GameStateManager : MonoBehaviour
     private void Start()
     {
         ChangeState(GameState.MainMenu_State);
+        ChangeStateToMainMenu();
     }
     
     public void ChangeState(GameState newState)
@@ -35,23 +37,43 @@ public class GameStateManager : MonoBehaviour
         currentStateDebug = currentState.ToString();
     }
 
+    public void ChangeStateToMainMenu()
+    {
+        ChangeState(GameState.MainMenu_State);
+        gameManager.uIManager.MainMenuUI();
+    }
+    
+    public void Pause()
+    {
+
+    }
+
+    public void Resume()
+    {
+
+    }
+    public void ChangeStateToGameplay()
+    {
+        ChangeState(GameState.Gameplay_State);
+        gameManager.uIManager.GameplayUI();
+    }
+
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        
+        if (Input.GetKeyDown(KeyCode.Escape) && currentState == GameState.Pause_State)
         {
-            ChangeState(GameState.MainMenu_State);
-            
+            Debug.Log("Changed to Pause");
+            Pause();
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+       else if (Input.GetKeyDown(KeyCode.Escape) && currentState == GameState.Pause_State)
         {
-            ChangeState(GameState.Pause_State);
-            Time.timeScale = 0.0f;
+            Debug.Log("Changed to Gameplay");
+            Resume();
         }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            ChangeState(GameState.Gameplay_State);
-            Time.timeScale = 1.0f;
-        }
+
     }
 
     private void HandleStateChange(GameState state)
@@ -66,14 +88,21 @@ public class GameStateManager : MonoBehaviour
             case GameState.Gameplay_State:
             {
                     Debug.Log("In Gameplay State");
+                    Time.timeScale = 1.0f;
                     break;
             }
             case GameState.Pause_State:
             {
                     Debug.Log("In Paused State");
+                    Time.timeScale = 0.0f;
                     break;
             }
        
        }
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
