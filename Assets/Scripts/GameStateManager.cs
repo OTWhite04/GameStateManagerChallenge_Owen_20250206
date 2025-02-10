@@ -40,14 +40,17 @@ public class GameStateManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             ChangeState(GameState.MainMenu_State);
+            
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ChangeState(GameState.Pause_State);
+            Time.timeScale = 0.0f;
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
             ChangeState(GameState.Gameplay_State);
+            Time.timeScale = 1.0f;
         }
     }
 
