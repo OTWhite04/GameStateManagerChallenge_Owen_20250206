@@ -52,6 +52,7 @@ public class GameStateManager : MonoBehaviour
     {
 
     }
+
     public void ChangeStateToGameplay()
     {
         ChangeState(GameState.Gameplay_State);
