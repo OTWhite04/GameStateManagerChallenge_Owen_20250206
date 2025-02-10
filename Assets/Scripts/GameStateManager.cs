@@ -45,12 +45,12 @@ public class GameStateManager : MonoBehaviour
     
     public void Pause()
     {
-
+        Time.timeScale = 0.0f;
     }
 
     public void Resume()
     {
-
+        Time.timeScale = 1.0f;
     }
 
     public void ChangeStateToGameplay()
@@ -70,10 +70,10 @@ public class GameStateManager : MonoBehaviour
         }
 
        else if (Input.GetKeyDown(KeyCode.Escape) && currentState == GameState.Pause_State)
-        {
+       {
             Debug.Log("Changed to Gameplay");
             Resume();
-        }
+       }
 
     }
 
@@ -89,13 +89,11 @@ public class GameStateManager : MonoBehaviour
             case GameState.Gameplay_State:
             {
                     Debug.Log("In Gameplay State");
-                    Time.timeScale = 1.0f;
                     break;
             }
             case GameState.Pause_State:
             {
                     Debug.Log("In Paused State");
-                    Time.timeScale = 0.0f;
                     break;
             }
        
