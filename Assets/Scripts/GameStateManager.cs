@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
-    //Reference for the game manager.
+    //Reference ot the game manager.
     public GameManager gameManager;
 
     public enum GameState
@@ -67,6 +67,10 @@ public class GameStateManager : MonoBehaviour
     //Update method for changing game states.
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            ChangeStateToMainMenu();
+        }
         //If and else if statements for changing the states of the game.
         if (Input.GetKeyDown(KeyCode.Escape) && currentState == GameState.Gameplay_State)
         {
