@@ -67,6 +67,7 @@ public class GameStateManager : MonoBehaviour
     //Update method for changing game states.
     private void Update()
     {
+        //If statement for goin back to the main menu by pressing M.
         if(Input.GetKeyDown(KeyCode.M))
         {
             ChangeStateToMainMenu();
@@ -77,7 +78,6 @@ public class GameStateManager : MonoBehaviour
             Debug.Log("Changed to Pause");
             ChangeState(GameState.Pause_State);
             Pause();
-            
         }
 
        else if (Input.GetKeyDown(KeyCode.Escape) && currentState == GameState.Pause_State)

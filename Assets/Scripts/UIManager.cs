@@ -10,18 +10,20 @@ public class UIManager : MonoBehaviour
     public GameObject gamePlayUI;
     public GameObject pausedUI;
 
+    //Sets Main Menu to active.
    public void MainMenuUI()
    {
         DisableAllUIPanels();
         mainMenu.SetActive(true);
    }
+   //Sets gameplay UI to active.
     public void GameplayUI()
     {
         DisableAllUIPanels();
         gamePlayUI.SetActive(true);
 
     }
-
+    //Sets Paused UI to active.
     public void PausedUI()
     {
         DisableAllUIPanels();
@@ -29,7 +31,7 @@ public class UIManager : MonoBehaviour
 
     }
 
-
+    //Disables all menus to start.
     public void DisableAllUIPanels()
     {
         mainMenu.SetActive(false);
