@@ -56,7 +56,6 @@ public class GameStateManager : MonoBehaviour
     public void ChangeStateToPause()
     {
         ChangeState(GameState.Pause_State);
-
     }
 
     //Update method for changing game states.
