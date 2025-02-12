@@ -24,7 +24,7 @@ public class GameStateManager : MonoBehaviour
     //Start method that calls te main menu at the start of the game.
     private void Start()
     {
-        ChangeState(GameState.MainMenu_State);
+        
         ChangeStateToMainMenu();
     }
     
@@ -44,46 +44,36 @@ public class GameStateManager : MonoBehaviour
     public void ChangeStateToMainMenu()
     {
         ChangeState(GameState.MainMenu_State);
-        gameManager.uIManager.MainMenuUI();
-    }
-    //Pause method that stops time in game.
-    public void Pause()
-    {
-        Time.timeScale = 0.0f;
-    }
-    //Resume method that changes the timescale.
-    public void Resume()
-    {
-        Time.timeScale = 1.0f;
+        
     }
 
     //The method for changing the state of the game to the gameplay.
     public void ChangeStateToGameplay()
     {
         ChangeState(GameState.Gameplay_State);
-        gameManager.uIManager.GameplayUI();
+    }
+
+    public void ChangeStateToPause()
+    {
+        ChangeState(GameState.Pause_State);
+
     }
 
     //Update method for changing game states.
     private void Update()
     {
-        //If statement for goin back to the main menu by pressing M.
-        if(Input.GetKeyDown(KeyCode.M))
-        {
-            ChangeStateToMainMenu();
-        }
+        
         //If and else if statements for changing the states of the game.
         if (Input.GetKeyDown(KeyCode.Escape) && currentState == GameState.Gameplay_State)
         {
             Debug.Log("Changed to Pause");
-            ChangeState(GameState.Pause_State);
-            Pause();
+
+            ChangeStateToPause();
         }
 
        else if (Input.GetKeyDown(KeyCode.Escape) && currentState == GameState.Pause_State)
        {
             Debug.Log("Changed to Gameplay");
-            Resume();
             ChangeStateToGameplay();
        }
 
@@ -97,16 +87,22 @@ public class GameStateManager : MonoBehaviour
             case GameState.MainMenu_State:
             {
                     Debug.Log("Main Menu State");
+                    Time.timeScale = 0.0f;
+                    gameManager.uIManager.MainMenuUI();
                     break;
             }
             case GameState.Gameplay_State:
             {
                     Debug.Log("In Gameplay State");
+                    Time.timeScale = 1.0f;
+                    gameManager.uIManager.GameplayUI();
                     break;
             }
             case GameState.Pause_State:
             {
                     Debug.Log("In Paused State");
+                    Time.timeScale = 0.0f;
+                    gameManager.uIManager.PausedUI();
                     break;
             }
        

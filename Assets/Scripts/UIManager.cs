@@ -13,12 +13,14 @@ public class UIManager : MonoBehaviour
     //Sets Main Menu to active.
    public void MainMenuUI()
    {
+        Debug.Log("Enabling main menu UI");
         DisableAllUIPanels();
         mainMenu.SetActive(true);
    }
    //Sets gameplay UI to active.
     public void GameplayUI()
     {
+        Debug.Log("Enabling gameplay UI");
         DisableAllUIPanels();
         gamePlayUI.SetActive(true);
 
